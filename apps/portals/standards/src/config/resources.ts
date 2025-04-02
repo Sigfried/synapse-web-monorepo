@@ -1,2 +1,1 @@
-// export const dataSql = `SELECT * FROM syn64960277`  // RegistryTable
-export const dataSql = `SELECT * FROM syn65676531` // DST_denormalized
+export const dataSql = `SELECT acronym, name, category, collections, topic as topics, relevantOrgAcronym as organizations, isOpen, registration FROM syn65676531` // DST_denormalized
