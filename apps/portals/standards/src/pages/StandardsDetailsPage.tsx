@@ -20,6 +20,7 @@ import { ColumnSingleValueFilterOperator } from '@sage-bionetworks/synapse-types
 
 export const standardsCardSchema: GenericCardSchema = {
   type: SynapseConstants.STANDARD_DATA_MODEL,
+  // include acronym somewhere?
   title: 'name',
   subTitle: 'responsibleOrgName',
   description: 'description',
@@ -104,6 +105,7 @@ export default function StandardsDetailsPage() {
         genericCardSchema={standardsCardSchema}
         secondaryLabelLimit={6}
         isHeader={true}
+        headerCardVariant="HeaderCardV2"
         searchParams={{ id }}
         sqlOperator={ColumnSingleValueFilterOperator.EQUAL}
       />
