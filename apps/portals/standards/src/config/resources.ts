@@ -1,12 +1,18 @@
 const DST_TABLE_ID = 'syn65676531'
+const ORG_TABLE_ID = 'syn63096836'
 // can replace with specific version if wanted
 
 // for the Explore page table:
 export const dataSql = `
     SELECT
         concat('[', acronym, '](/Explore/Standard/DetailsPage?id=', id, ')') as acronym,
-            name, category, collections, topic as topics, relevantOrgAcronym as organizations, isOpen, registration FROM ${DST_TABLE_ID}
+            name, category, collections, topic as topics,
+            relevantOrgAcronym as organizations,
+            isOpen, registration FROM ${DST_TABLE_ID}
 `
+
+export const orgSql = `SELECT * FROM ${ORG_TABLE_ID}`
+
 // concat('/Explore/Standard/DetailsPage?id=', id) as link, acronym,
 
 // for details page:
@@ -17,7 +23,8 @@ export const standardsDetailsPageSQL = `
             category,
             collections,
             topic as topics,
-            relevantOrgAcronym as orranizations,
+            has_relevant_organization,
+            relevantOrgAcronym as organizations,
             responsibleOrgName as SDO,
             isOpen,
             registration

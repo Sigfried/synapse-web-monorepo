@@ -13,10 +13,13 @@ import {
   RowDataTable,
   SkeletonTable,
 } from 'synapse-react-client'
+
+import { standardsDetailsPageSQL, orgSql } from '../config/resources' // SQL statements to feed cards
+
 import { CardContainerLogic } from 'synapse-react-client'
 import columnAliases from '../config/columnAliases'
+import { dataColumnLinks } from '../config/synapseConfigs/data'
 import { ColumnSingleValueFilterOperator } from '@sage-bionetworks/synapse-types'
-import { standardsDetailsPageSQL } from '../config/resources'
 // import { ReactComponent as standardDataModelSvg } from '@sage-bionetworks/synapse-react-client/src/assets/icons/standardDataModel.svg'
 const dataSql = standardsDetailsPageSQL
 
@@ -27,8 +30,16 @@ export const standardsCardSchema: GenericCardSchema = {
   subTitle: 'standardName',
   description: 'description',
   link: 'URL',
+  // ctaButtons: 'columnLinks',
   // icon: standardDataModelSvg,
   secondaryLabels: ['SDO', 'collections', 'topic'],
+}
+
+export const organizationCardSchema: GenericCardSchema = {
+  type: SynapseConstants.ORGANIZATION,
+  title: 'name',
+  subTitle: 'description',
+  link: 'url',
 }
 
 export const standardDetailsPageContent: DetailsPageContentType = [
@@ -46,9 +57,9 @@ export const standardDetailsPageContent: DetailsPageContentType = [
                   rowData={context.rowData.values ?? []}
                   headers={context.rowSet?.headers ?? []}
                   displayedColumns={[
-                    'name',
-                    'responsibleOrgName',
-                    'relevantOrgName',
+                    'standardName',
+                    'organizations',
+                    'SDO',
                     'isOpen',
                     'registration',
                   ]}
@@ -64,27 +75,44 @@ export const standardDetailsPageContent: DetailsPageContentType = [
     ),
   },
   {
-    id: 'Linked Training Resources',
-    title: 'Linked Training Resources',
+    id: 'Related Organizations',
+    title: 'Related Organizations',
     element: (
-      <DetailsPageContextConsumer columnName={'id'}>
-        {
-          // @ts-ignore
-          ({ value }) => (
-            <>{value}</>
-            // TODO:
-            // <CardContainerLogic
-            //   {...trainingResourcesCardContainerProps}
-            //   searchParams={{ standardId: value! }}
-            // />
+      <DetailsPageContextConsumer columnName={'has_relevant_organization'}>
+        {({ value, context }) => {
+          console.log(value, context)
+          return (
+            <CardContainerLogic
+              type={SynapseConstants.GENERIC_CARD}
+              genericCardSchema={organizationCardSchema}
+              sql={orgSql}
+              searchParams={{ id: value! }}
+              sqlOperator={ColumnSingleValueFilterOperator.IN}
+            />
           )
-        }
+        }}
       </DetailsPageContextConsumer>
     ),
   },
   {
     id: 'Related Standards',
     title: 'Related Standards',
+    element: (
+      <DetailsPageContextConsumer columnName={'id'}>
+        {({ value }) => (
+          <>{value}</>
+          // TODO:
+          // <CardContainerLogic
+          //   {...standardCardContainerProps}
+          //   searchParams={{ standardId: value! }}
+          // />
+        )}
+      </DetailsPageContextConsumer>
+    ),
+  },
+  {
+    id: 'Linked Training Resources',
+    title: 'Linked Training Resources',
     element: (
       <DetailsPageContextConsumer columnName={'id'}>
         {
@@ -116,6 +144,7 @@ export default function StandardsDetailsPage() {
         sql={dataSql}
         type={SynapseConstants.GENERIC_CARD}
         genericCardSchema={standardsCardSchema}
+        labelLinkConfig={dataColumnLinks}
         secondaryLabelLimit={6}
         isHeader={true}
         headerCardVariant="HeaderCardV2"

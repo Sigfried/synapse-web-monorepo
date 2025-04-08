@@ -189,12 +189,12 @@ function HeaderCardV2({
     // as per https://github.com/bridge2ai/b2ai-standards-registry/issues/210#issuecomment-2773706202,
     // constrain metadata to 5-line expandable block
   }
-  console.log({
-    windowWidth,
-    useStackedLayout,
-    descriptionHeight,
-    metadataHeight,
-  })
+  // console.log({
+  //   windowWidth,
+  //   useStackedLayout,
+  //   descriptionHeight,
+  //   metadataHeight,
+  // })
 
   // Meta tags handling
   const descriptionElement: Element | null = document.querySelector(
