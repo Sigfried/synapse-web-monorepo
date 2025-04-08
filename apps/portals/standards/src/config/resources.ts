@@ -20,12 +20,16 @@ export const standardsDetailsPageSQL = `
     SELECT  acronym,
             name as standardName,
             description,
+            URL as url,
+            concat('/Explore/Standard/DetailsPage?id=', id) as detailsPageUrl,
             category,
             collections,
             topic as topics,
             has_relevant_organization,
             relevantOrgAcronym as organizations,
             responsibleOrgName as SDO,
+            trainingResources,
+            relatedTo,
             isOpen,
             registration
     FROM ${DST_TABLE_ID}

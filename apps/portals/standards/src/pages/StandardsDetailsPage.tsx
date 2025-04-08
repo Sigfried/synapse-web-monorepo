@@ -25,14 +25,21 @@ const dataSql = standardsDetailsPageSQL
 
 export const standardsCardSchema: GenericCardSchema = {
   type: SynapseConstants.STANDARD_DATA_MODEL,
-  // include acronym somewhere?
   title: 'acronym',
   subTitle: 'standardName',
   description: 'description',
-  link: 'URL',
+  link: 'url',
   // ctaButtons: 'columnLinks',
   // icon: standardDataModelSvg,
   secondaryLabels: ['SDO', 'collections', 'topic'],
+}
+
+export const relatedStandardsCardSchema: GenericCardSchema = {
+  type: SynapseConstants.STANDARD_DATA_MODEL,
+  title: 'acronym',
+  subTitle: 'standardName',
+  description: 'description',
+  link: 'detailsPageUrl',
 }
 
 export const organizationCardSchema: GenericCardSchema = {
@@ -75,18 +82,34 @@ export const standardDetailsPageContent: DetailsPageContentType = [
     ),
   },
   {
-    id: 'Related Organizations',
-    title: 'Related Organizations',
+    id: 'Linked Training Resources',
+    title: 'Linked Training Resources',
     element: (
-      <DetailsPageContextConsumer columnName={'has_relevant_organization'}>
+      <DetailsPageContextConsumer columnName={'trainingResources'}>
+        {({ value }) => (
+          <CardContainerLogic
+            type={SynapseConstants.GENERIC_CARD}
+            genericCardSchema={relatedStandardsCardSchema}
+            sql={dataSql}
+            searchParams={{ id: value || 'fake id to prevent matching all' }}
+            sqlOperator={ColumnSingleValueFilterOperator.IN}
+          />
+        )}
+      </DetailsPageContextConsumer>
+    ),
+  },
+  {
+    id: 'Related Standards',
+    title: 'Related Standards',
+    element: (
+      <DetailsPageContextConsumer columnName={'relatedTo'}>
         {({ value, context }) => {
-          console.log(value, context)
           return (
             <CardContainerLogic
               type={SynapseConstants.GENERIC_CARD}
-              genericCardSchema={organizationCardSchema}
-              sql={orgSql}
-              searchParams={{ id: value! }}
+              genericCardSchema={relatedStandardsCardSchema}
+              sql={dataSql}
+              searchParams={{ id: value || 'fake id to prevent matching all' }}
               sqlOperator={ColumnSingleValueFilterOperator.IN}
             />
           )
@@ -95,37 +118,21 @@ export const standardDetailsPageContent: DetailsPageContentType = [
     ),
   },
   {
-    id: 'Related Standards',
-    title: 'Related Standards',
+    id: 'Related Organizations',
+    title: 'Related Organizations',
     element: (
-      <DetailsPageContextConsumer columnName={'id'}>
-        {({ value }) => (
-          <>{value}</>
-          // TODO:
-          // <CardContainerLogic
-          //   {...standardCardContainerProps}
-          //   searchParams={{ standardId: value! }}
-          // />
-        )}
-      </DetailsPageContextConsumer>
-    ),
-  },
-  {
-    id: 'Linked Training Resources',
-    title: 'Linked Training Resources',
-    element: (
-      <DetailsPageContextConsumer columnName={'id'}>
-        {
-          // @ts-ignore
-          ({ value }) => (
-            <>{value}</>
-            // TODO:
-            // <CardContainerLogic
-            //   {...standardCardContainerProps}
-            //   searchParams={{ standardId: value! }}
-            // />
+      <DetailsPageContextConsumer columnName={'has_relevant_organization'}>
+        {({ value, context }) => {
+          return (
+            <CardContainerLogic
+              type={SynapseConstants.GENERIC_CARD}
+              genericCardSchema={organizationCardSchema}
+              sql={orgSql}
+              searchParams={{ id: value || 'fake id to prevent matching all' }}
+              sqlOperator={ColumnSingleValueFilterOperator.IN}
+            />
           )
-        }
+        }}
       </DetailsPageContextConsumer>
     ),
   },
