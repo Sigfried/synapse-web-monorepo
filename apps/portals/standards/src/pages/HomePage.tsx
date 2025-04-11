@@ -1,7 +1,7 @@
 import { SectionLayout } from '@sage-bionetworks/synapse-portal-framework/components/SectionLayout'
 import StandardsHeader from '@sage-bionetworks/synapse-portal-framework/components/standards/StandardsHeader'
 import StandardsContributeToTheRegistry from '@sage-bionetworks/synapse-portal-framework/components/standards/StandardsContributeToTheRegistry'
-import { dataSql } from '../config/resources'
+import { homePageSql } from '../config/resources'
 import { FeaturedDataTabs } from 'synapse-react-client'
 import columnAliases from '../config/columnAliases'
 
@@ -9,7 +9,7 @@ import columnAliases from '../config/columnAliases'
 export default function HomePage() {
   return (
     <>
-      <StandardsHeader dataSql={dataSql} />
+      <StandardsHeader dataSql={homePageSql} />
       {/* <SectionLayout ContainerProps={{ className: 'home-spacer' }}>
         <Goals entityId={'syn23518009'} />
       </SectionLayout> */}
@@ -21,7 +21,7 @@ export default function HomePage() {
           ContainerProps={{ className: 'home-spacer' }}
         >
           <FeaturedDataTabs
-            sql={dataSql}
+            sql={homePageSql}
             rgbIndex={3}
             configs={[
               {
@@ -30,10 +30,14 @@ export default function HomePage() {
                 explorePagePath: '/Explore',
                 exploreObjectType: 'Standards',
                 plotsConfig: {
-                  sql: `${dataSql} where responsibleOrgName is not null`,
+                  sql: homePageSql,
                   configs: [
                     {
-                      facetsToPlot: ['topic', 'responsibleOrgName'],
+                      facetsToPlot: [
+                        'topic',
+                        'responsibleOrgName',
+                        'organizations',
+                      ],
                       unitDescription: 'standard',
                       plotType: 'BAR',
                       columnAliases: columnAliases,

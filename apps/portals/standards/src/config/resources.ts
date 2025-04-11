@@ -32,3 +32,14 @@ export const standardsDetailsPageSQL = `
             registration
     FROM ${DST_TABLE_ID}
 `
+
+export const homePageSql = `
+    SELECT  
+            topic,
+            relevantOrgAcronym,
+            responsibleOrgAcronym
+    FROM ${DST_TABLE_ID}
+    WHERE responsibleOrgName IS NOT NULL
+      AND relevantOrgAcronym IS NOT NULL
+      AND topic IS NOT NULL
+`
