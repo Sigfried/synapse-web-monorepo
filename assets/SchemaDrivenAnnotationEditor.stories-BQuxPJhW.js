@@ -1,0 +1,94 @@
+import{m as C}from"./mockSchema-B6Fak2_L.js";import{S as $}from"./SchemaDrivenAnnotationEditor-BLggLRHO.js";import{f as m}from"./index-JM56W89W.js";import"./VerificationSubmission-CMrrYimb.js";import"./mockFileEntity-C36FWylP.js";import"./StringUtils-Bdqa-HwM.js";import"./mock_file_handle-3Ozoui7p.js";import"./mock_user_profile-CCzWeUML.js";import"./mockProject-RH5gJgZS.js";import"./mockTeam-DAkUYSiV.js";import"./SynapseConstants-BdcCd4A3.js";import"./OrientationBanner-DlDRqK-M.js";import"./jsx-runtime-Dhli7KBL.js";import"./index-DEQ1fQa5.js";import"./iframe-s6qlbwHk.js";import"./index-_fkYTXNG.js";import"./spreadSx-CwcO6WA9.js";import"./react-BW6RfM7d.js";import"./FullWidthAlert-BvR3RJjS.js";import"./Alert-CbYgLtY_.js";import"./createTheme-CJfKwWVs.js";import"./DefaultPropsProvider-C3iF_79r.js";import"./useSlot-DzfupDdd.js";import"./useForkRef-DCE3I8ZF.js";import"./createSimplePaletteValueFilter-DcXnBabR.js";import"./createSvgIcon-CJ5boNWA.js";import"./Close-Nq4ftogt.js";import"./IconButton-DoQfu9eu.js";import"./useTimeout-DR2FhdkH.js";import"./ButtonBase-iKW_GJ--.js";import"./isFocusVisible-B8k4qzLc.js";import"./CircularProgress-c0yqw1ly.js";import"./Paper-26vUPAyY.js";import"./useTheme-CMsyncQe.js";import"./useTheme-D3ARoYqI.js";import"./Stack-tBPJvJQS.js";import"./extendSxProp-DeLn-NTt.js";import"./getThemeProps-CyzxDLHY.js";import"./Box-1ZjzCjOC.js";import"./AlertTitle-Cw5xU-k0.js";import"./Typography-CGz3zBer.js";import"./index-DYkVAo-Y.js";import"./ClickAwayListener-DdotNO6S.js";import"./getReactElementRef-CE_IEAPB.js";import"./index-DpwwTFlF.js";import"./index-C9ClvKms.js";import"./ownerDocument-DW-IO8s5.js";import"./Grow-DHD9kWkx.js";import"./Tooltip-De3YQS2r.js";import"./index-BfslkmiT.js";import"./useControlled-pcIEsOA5.js";import"./Popper-Oxiv_XB1.js";import"./Button-Buzi6Rqh.js";import"./uniqueId-BfHNvlgF.js";import"./toString-BOu60Wce.js";import"./isObjectLike-Cqlp4qXx.js";import"./isArray-Dxzbedgu.js";import"./isSymbol-Cb35MKTK.js";import"./times-zwI2_PCf.js";import"./_baseTimes-36S_kd0L.js";import"./identity-DKeuBCMA.js";import"./toInteger-B1lhAxvf.js";import"./useFiles-BPgByLV3.js";import"./fetchWithExponentialTimeout-CXmnpl-T.js";import"./useQuery-Bn1Hz8I8.js";import"./utils-DT5qlvdf.js";import"./Link-BRRY5dPw.js";import"./Collapse-0Bf0C6RI.js";import"./_baseUniq-hvZMAqny.js";import"./_Uint8Array-CgL5HehD.js";import"./_getTag-B4Q3uuMh.js";import"./isEqual-DLXit8ph.js";import"./merge-BO74sYMx.js";import"./_initCloneObject-COSO_zG0.js";import"./tinycolor-Begke6kS.js";import"./Fade-BzfUteyK.js";import"./inputBaseClasses-DXB-V5Zk.js";import"./calculateFriendlyFileSize-DrcnpT8i.js";import"./CheckCircleTwoTone-D0_ubO0S.js";import"./InfoTwoTone-CeTSZ4WL.js";import"./useMutation-th1xDXaD.js";import"./dayjs.min-B3qj0OmD.js";import"./chunk-AYJ5UCUI-DrnhkrM7.js";import"./cloneDeep-BKPJ5aTr.js";import"./Skeleton-D6XqefBE.js";import"./useEntity-xBTWw-fF.js";import"./pickBy-CIPB4kpM.js";import"./isString-E4ddlD2J.js";import"./_baseIteratee-Dtz1q3-i.js";import"./_baseGet-CNO7Ddv6.js";import"./hasIn-CBVRLcqm.js";import"./pick-r2E-qGyx.js";import"./_baseSet-DxKZt5j7.js";import"./omit-Ca8UrGzg.js";import"./_baseSlice-F8doVSIJ.js";import"./useQueries-Czv4OkUs.js";import"./useInfiniteQuery-_5t0Yqlg.js";import"./InfiniteQueryUtils-CKlRW-xB.js";import"./useEntityBundle-CdumZ66U.js";import"./index-BKx_OCwx.js";import"./enums-DEvENSXs.js";import"./_arrayReduce-CrxnWFSq.js";import"./_baseEach-CIV7hMx7.js";import"./uniq-C5j_Twoc.js";import"./forEach-BnDyFV9P.js";import"./Grid-BZE4dLLv.js";import"./isMuiElement-BB4fdvxR.js";import"./TextField-CJVnsk0V.js";import"./Select-k_jC5jgK.js";import"./Menu-UQrgOXq2.js";import"./Popover-DEFj3VJa.js";import"./isHostComponent-DVu5iVWx.js";import"./ownerWindow-HkKU3E4x.js";import"./debounce-Be36O1Ab.js";import"./mergeSlotProps-DfRE_GOJ.js";import"./Modal-EZlKKjsb.js";import"./getScrollbarSize-CaCM53D3.js";import"./createChainedFunction-BO_9K8Jh.js";import"./Backdrop-BPpcyXzf.js";import"./MenuList-hD-r2UG_.js";import"./List-DRyR9RAA.js";import"./FormControl-Cnj7asKJ.js";import"./useFormControl-58Yj1KK3.js";import"./formControlState-Dq1zat_P.js";import"./InputBase-BuDLrQb0.js";import"./Input-DLxGhx-U.js";import"./InputLabel-B33Rits7.js";import"./FormLabel-C2ApkD6b.js";import"./FormHelperText-D04QnKAK.js";import"./ListItem-BOfSBggc.js";import"./listItemButtonClasses-DEsd0JR2.js";import"./ListItemIcon-DqmNmElF.js";import"./MenuItem-DtXeiwM7.js";import"./dividerClasses-7Hwyyoiu.js";import"./ListItemText-BoMPdOgl.js";import"./ArrowUpward-DZ1cxqh6.js";import"./ContentCopy-DRaGyC7C.js";import"./Divider-DkNdq81V.js";import"./FormControlLabel-C3V1bm5p.js";import"./Checkbox-C5LbKMst.js";import"./SwitchBase-DBBoH8bK.js";import"./FormGroup-cLG_spyR.js";import"./RadioGroup-BX-aZznw.js";import"./Radio-qoIwgAeK.js";import"./Slider-DRvJ2vi-.js";import"./visuallyHidden-Dan1xhjv.js";import"./ConfirmationDialog-D2JbkMS3.js";import"./DialogBase-CHjmiR2f.js";import"./Close-Dcm-ZW9E.js";import"./HelpPopover-E9ZIlQcr.js";import"./MarkdownPopover-BlCfsymO.js";import"./LightTooltip-BdAYQIzx.js";import"./MarkdownSynapse-CmRB-oZ4.js";import"./SkeletonButton-Bl9v0nFf.js";import"./SkeletonInlineBlock-DT0w6FPk.js";import"./SkeletonTable-DW2QrrQo.js";import"./SkeletonParagraph-B5IdMMDT.js";import"./HelpOutlineTwoTone-D9_DaqlV.js";import"./DialogTitle-Dfam7qQU.js";import"./DialogContent-CByvYvb2.js";import"./Dialog-Dl2XLGrD.js";import"./JsonSchemaForm-BI1OCGZ-.js";import"./GridLegacy-Bjm8A9j-.js";import"./HelpTwoTone-BZoTdGGo.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./groupBy-CGdd1Rzf.js";import"./_createAggregator-CwbGWWzp.js";import"./_baseMap-i8SqTuSf.js";import"./DateTimePicker-TAqphSrs.js";import"./localizedFormat-BznR3Xa0.js";import"./utc-DoFmu1-d.js";import"./useMobilePicker-DLDTeX48.js";import"./index-CKJKpZXW.js";import"./index-Chjiymov.js";import"./CSSTransition-D1QwioBi.js";import"./InputAdornment-Cu6tSwhS.js";import"./index-CISsfshE.js";import"./Chip-CMgv1pbV.js";import"./Tabs--ZGlop7g.js";import"./KeyboardArrowRight-C2-9V_Uh.js";import"./Autocomplete-B741V_SA.js";import"./usePreviousProps-Ctmr9psv.js";import"./LoadingScreen-BAooO6Vi.js";import"./LinearProgress-F1nMjWKw.js";import"./use-deep-compare-effect.esm-DAv6td6A.js";import"./ToastMessage-uArB3PM3.js";import"./TextWidget-rJ23eSQl.js";const Zo={title:"Synapse/SchemaDrivenAnnotationEditor",component:$,args:{onSuccess:m(),onCancel:m(),onChange:m()}},r={args:{schemaId:"dev.grosenbacher.test-Arrays",entityId:"syn25959281"}},t={args:{schemaId:"dev.grosenbacher.test-IfThenElse"}},o={args:{schemaId:"nkauer-ad.main"}},i={args:{entityId:"syn32673093"}},p={args:{entityId:"syn25959288"}},e={args:{validationSchema:{$schema:"http://json-schema.org/draft-07/schema#",$id:`https://repo-prod.prod.sagebase.org/repo/v1/schema/type/registered/${C.jsonSchemaVersionInfo.$id}`,type:"object",properties:{country:{enum:["USA","CA"],description:"Test description for country property"},showStringArray:{type:"boolean"}},required:["country"],allOf:[{if:{properties:{country:{const:"USA"}},required:["country"]},then:{properties:{state:{type:"string"}},required:["state"]}},{if:{properties:{country:{const:"CA"}},required:["country"]},then:{properties:{province:{type:"string"}},required:["province"]}},{if:{properties:{showStringArray:{const:!0}},required:["showStringArray"]},then:{properties:{stringArray:{type:"array",items:{type:"string"}}}}}]}}};var n,s,a;r.parameters={...r.parameters,docs:{...(n=r.parameters)==null?void 0:n.docs,source:{originalSource:`{
+  args: {
+    schemaId: 'dev.grosenbacher.test-Arrays',
+    entityId: 'syn25959281'
+  }
+}`,...(a=(s=r.parameters)==null?void 0:s.docs)==null?void 0:a.source}}};var c,d,y;t.parameters={...t.parameters,docs:{...(c=t.parameters)==null?void 0:c.docs,source:{originalSource:`{
+  args: {
+    schemaId: 'dev.grosenbacher.test-IfThenElse'
+  }
+}`,...(y=(d=t.parameters)==null?void 0:d.docs)==null?void 0:y.source}}};var u,h,g;o.parameters={...o.parameters,docs:{...(u=o.parameters)==null?void 0:u.docs,source:{originalSource:`{
+  args: {
+    schemaId: 'nkauer-ad.main'
+  }
+}`,...(g=(h=o.parameters)==null?void 0:h.docs)==null?void 0:g.source}}};var S,l,f;i.parameters={...i.parameters,docs:{...(S=i.parameters)==null?void 0:S.docs,source:{originalSource:`{
+  args: {
+    entityId: 'syn32673093'
+  }
+}`,...(f=(l=i.parameters)==null?void 0:l.docs)==null?void 0:f.source}}};var A,v,I;p.parameters={...p.parameters,docs:{...(A=p.parameters)==null?void 0:A.docs,source:{originalSource:`{
+  args: {
+    entityId: 'syn25959288'
+  }
+}`,...(I=(v=p.parameters)==null?void 0:v.docs)==null?void 0:I.source}}};var q,E,b;e.parameters={...e.parameters,docs:{...(q=e.parameters)==null?void 0:q.docs,source:{originalSource:`{
+  args: {
+    validationSchema: {
+      $schema: 'http://json-schema.org/draft-07/schema#',
+      $id: \`https://repo-prod.prod.sagebase.org/repo/v1/schema/type/registered/\${mockSchemaBinding.jsonSchemaVersionInfo.$id}\`,
+      type: 'object',
+      properties: {
+        country: {
+          enum: ['USA', 'CA'],
+          description: 'Test description for country property'
+        },
+        showStringArray: {
+          type: 'boolean'
+        }
+      },
+      required: ['country'],
+      allOf: [{
+        if: {
+          properties: {
+            country: {
+              const: 'USA'
+            }
+          },
+          required: ['country']
+        },
+        then: {
+          properties: {
+            state: {
+              type: 'string'
+            }
+          },
+          required: ['state']
+        }
+      }, {
+        if: {
+          properties: {
+            country: {
+              const: 'CA'
+            }
+          },
+          required: ['country']
+        },
+        then: {
+          properties: {
+            province: {
+              type: 'string'
+            }
+          },
+          required: ['province']
+        }
+      }, {
+        if: {
+          properties: {
+            showStringArray: {
+              const: true
+            }
+          },
+          required: ['showStringArray']
+        },
+        then: {
+          properties: {
+            stringArray: {
+              type: 'array',
+              items: {
+                type: 'string'
+              }
+            }
+          }
+        }
+      }]
+    }
+  }
+}`,...(b=(E=e.parameters)==null?void 0:E.docs)==null?void 0:b.source}}};const ri=["Arrays","IfThenElse","ComplexSchema","DerivedAnnotations","ErrorsEntity","DirectlyProvidedSchema"];export{r as Arrays,o as ComplexSchema,i as DerivedAnnotations,e as DirectlyProvidedSchema,p as ErrorsEntity,t as IfThenElse,ri as __namedExportsOrder,Zo as default};

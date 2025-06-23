@@ -1,0 +1,30 @@
+import{j as g}from"./jsx-runtime-Dhli7KBL.js";import{M as w}from"./MarkdownPopover-BlCfsymO.js";import{w as h,u as k}from"./index-JM56W89W.js";import{I as v}from"./InfoTwoTone-CeTSZ4WL.js";import"./index-DEQ1fQa5.js";import"./iframe-s6qlbwHk.js";import"./LightTooltip-BdAYQIzx.js";import"./DefaultPropsProvider-C3iF_79r.js";import"./createTheme-CJfKwWVs.js";import"./Tooltip-De3YQS2r.js";import"./index-BfslkmiT.js";import"./useTheme-CMsyncQe.js";import"./useTheme-D3ARoYqI.js";import"./useSlot-DzfupDdd.js";import"./useForkRef-DCE3I8ZF.js";import"./useTimeout-DR2FhdkH.js";import"./useControlled-pcIEsOA5.js";import"./getReactElementRef-CE_IEAPB.js";import"./index-DpwwTFlF.js";import"./index-C9ClvKms.js";import"./Grow-DHD9kWkx.js";import"./Popper-Oxiv_XB1.js";import"./ownerDocument-DW-IO8s5.js";import"./isFocusVisible-B8k4qzLc.js";import"./Link-BRRY5dPw.js";import"./createSimplePaletteValueFilter-DcXnBabR.js";import"./Typography-CGz3zBer.js";import"./index-DYkVAo-Y.js";import"./extendSxProp-DeLn-NTt.js";import"./spreadSx-CwcO6WA9.js";import"./Box-1ZjzCjOC.js";import"./Button-Buzi6Rqh.js";import"./ButtonBase-iKW_GJ--.js";import"./CircularProgress-c0yqw1ly.js";import"./react-BW6RfM7d.js";import"./MarkdownSynapse-CmRB-oZ4.js";import"./useFiles-BPgByLV3.js";import"./VerificationSubmission-CMrrYimb.js";import"./SynapseConstants-BdcCd4A3.js";import"./OrientationBanner-DlDRqK-M.js";import"./index-_fkYTXNG.js";import"./FullWidthAlert-BvR3RJjS.js";import"./Alert-CbYgLtY_.js";import"./createSvgIcon-CJ5boNWA.js";import"./Close-Nq4ftogt.js";import"./IconButton-DoQfu9eu.js";import"./Paper-26vUPAyY.js";import"./Stack-tBPJvJQS.js";import"./getThemeProps-CyzxDLHY.js";import"./AlertTitle-Cw5xU-k0.js";import"./ClickAwayListener-DdotNO6S.js";import"./fetchWithExponentialTimeout-CXmnpl-T.js";import"./StringUtils-Bdqa-HwM.js";import"./useQuery-Bn1Hz8I8.js";import"./utils-DT5qlvdf.js";import"./Collapse-0Bf0C6RI.js";import"./_baseUniq-hvZMAqny.js";import"./_Uint8Array-CgL5HehD.js";import"./_baseTimes-36S_kd0L.js";import"./isObjectLike-Cqlp4qXx.js";import"./isArray-Dxzbedgu.js";import"./_getTag-B4Q3uuMh.js";import"./isEqual-DLXit8ph.js";import"./merge-BO74sYMx.js";import"./_initCloneObject-COSO_zG0.js";import"./identity-DKeuBCMA.js";import"./tinycolor-Begke6kS.js";import"./Fade-BzfUteyK.js";import"./inputBaseClasses-DXB-V5Zk.js";import"./calculateFriendlyFileSize-DrcnpT8i.js";import"./CheckCircleTwoTone-D0_ubO0S.js";import"./useMutation-th1xDXaD.js";import"./dayjs.min-B3qj0OmD.js";import"./chunk-AYJ5UCUI-DrnhkrM7.js";import"./cloneDeep-BKPJ5aTr.js";import"./Skeleton-D6XqefBE.js";import"./SkeletonButton-Bl9v0nFf.js";import"./SkeletonInlineBlock-DT0w6FPk.js";import"./SkeletonTable-DW2QrrQo.js";import"./times-zwI2_PCf.js";import"./toInteger-B1lhAxvf.js";import"./isSymbol-Cb35MKTK.js";import"./SkeletonParagraph-B5IdMMDT.js";const Qt={title:"Markdown/MarkdownPopover",component:w,args:{children:g.jsx(v,{}),contentProps:{markdown:""}},parameters:{design:{type:"figma",url:"https://www.figma.com/file/0oPm5lLSUva8kyfVNMS6FA/Sage-Style-%26-Component-Library?type=design&node-id=187-6607"}},play:async({canvasElement:l})=>{const d=h(l).getByRole("button");await k.click(d)}},t={args:{contentProps:{markdown:"Supports _rendering_ basic **Markdown**."},placement:"bottom"}},o={args:{contentProps:{markdown:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. [Phasellus sed tellus lorem](https://synapse.org/). In varius dui nec porttitor tristique. Suspendisse purus orci, dictum at lacus et, egestas commodo tortor. Mauris elementum, ligula in aliquet volutpat, sem arcu vestibulum enim, at scelerisque justo diam ut velit. Fusce iaculis tincidunt velit, vel dignissim dolor condimentum et. Sed ut nibh ac nunc facilisis facilisis."},placement:"right",actionButton:{content:"Show/Hide Hidden Text",onClick:()=>{console.log("Clicked")}}}},i={args:{contentProps:{ownerId:"syn12666371",wikiId:"585317"},showCloseButton:!1,placement:"right"}};var r,e,m;t.parameters={...t.parameters,docs:{...(r=t.parameters)==null?void 0:r.docs,source:{originalSource:`{
+  args: {
+    contentProps: {
+      markdown: 'Supports _rendering_ basic **Markdown**.'
+    },
+    placement: 'bottom'
+  }
+}`,...(m=(e=t.parameters)==null?void 0:e.docs)==null?void 0:m.source}}};var n,s,p;o.parameters={...o.parameters,docs:{...(n=o.parameters)==null?void 0:n.docs,source:{originalSource:`{
+  args: {
+    contentProps: {
+      markdown: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. [Phasellus sed tellus lorem](https://synapse.org/). In varius dui nec porttitor tristique. Suspendisse purus orci, dictum at lacus et, egestas commodo tortor. Mauris elementum, ligula in aliquet volutpat, sem arcu vestibulum enim, at scelerisque justo diam ut velit. Fusce iaculis tincidunt velit, vel dignissim dolor condimentum et. Sed ut nibh ac nunc facilisis facilisis.'
+    },
+    placement: 'right',
+    actionButton: {
+      content: 'Show/Hide Hidden Text',
+      onClick: () => {
+        console.log('Clicked');
+      }
+    }
+  }
+}`,...(p=(s=o.parameters)==null?void 0:s.docs)==null?void 0:p.source}}};var a,c,u;i.parameters={...i.parameters,docs:{...(a=i.parameters)==null?void 0:a.docs,source:{originalSource:`{
+  args: {
+    contentProps: {
+      ownerId: 'syn12666371',
+      wikiId: '585317'
+    },
+    showCloseButton: false,
+    placement: 'right'
+  }
+}`,...(u=(c=i.parameters)==null?void 0:c.docs)==null?void 0:u.source}}};const Xt=["NoAction","WithAction","WikiPage"];export{t as NoAction,i as WikiPage,o as WithAction,Xt as __namedExportsOrder,Qt as default};
