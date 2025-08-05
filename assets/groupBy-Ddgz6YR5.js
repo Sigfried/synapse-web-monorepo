@@ -1,1 +1,0 @@
-import{b as t}from"./_initCloneObject-C5_AaL3s.js";import{c as p}from"./_createAggregator-9TrAaWSu.js";var e=Object.prototype,s=e.hasOwnProperty,i=p(function(r,a,o){s.call(r,o)?r[o].push(a):t(r,o,[a])});export{i as g};
