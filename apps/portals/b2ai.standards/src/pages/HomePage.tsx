@@ -10,17 +10,19 @@ import {
 import { FeaturedDataTabs } from 'synapse-react-client'
 import CTASectionWrapper from 'synapse-react-client/components/CTASectionWrapper/CTASectionWrapper'
 import columnAliases from '../config/columnAliases'
+import ColumnarVisualization from '@/components/ColumnarVisualization'
 
 export default function HomePage() {
   return (
     <>
       <StandardsHeader sql={standardsSql} ftsConfig={standardsFtsConfig} />
       <div>
-        <h2 className="title center-title">
-          Standards Related to Bridge2AI Challenges
-        </h2>
+        <h2 className="title center-title">Bridge2AI Challenges</h2>
       </div>
+
       <ChallengesCardDeck />
+      <ColumnarVisualization />
+
       {/* <SectionLayout ContainerProps={{ className: 'home-spacer' }}>
         <Goals entityId={'syn23518009'} />
       </SectionLayout> */}

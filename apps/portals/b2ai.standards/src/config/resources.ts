@@ -1,17 +1,18 @@
 import { FTSConfig } from 'synapse-react-client/components/SynapseTable/SearchV2'
 
 export const TABLE_IDS = {
-  Challenges: { name: 'Challenges', id: 'syn65913973.1' }, // the only reason for this table is to get the GC images
-  // CurrentTableVersions: { name: 'CurrentTableVersions', id: 'syn66330007' },
   DST_denormalized: { name: 'DST_denormalized', id: 'syn65676531.66' },
-  DataSet: { name: 'DataSet', id: 'syn66330217' },
   DataSet_denormalized: { name: 'DataSet_denormalized', id: 'syn68258237.3' },
-  DataStandardOrTool: { name: 'DataStandardOrTool', id: 'syn63096833' },
+  Organization: { name: 'Organization', id: 'syn63096836.31' },
   DataSubstrate: { name: 'DataSubstrate', id: 'syn63096834' },
   DataTopic: { name: 'DataTopic', id: 'syn63096835' },
-  Organization: { name: 'Organization', id: 'syn63096836.31' },
-  Org_denormalized: { name: 'Org_denormalized', id: 'syn68259166' },
-  UseCase: { name: 'UseCase', id: 'syn63096837' },
+  // tables on Synapse but not being used in portal (keeping here for easy reference):
+  // Challenges: { name: 'Challenges', id: 'syn65913973.1' }, // the only reason for this table is to get the GC images
+  // CurrentTableVersions: { name: 'CurrentTableVersions', id: 'syn66330007' },
+  // DataSet: { name: 'DataSet', id: 'syn66330217' },
+  // DataStandardOrTool: { name: 'DataStandardOrTool', id: 'syn63096833' },
+  // Org_denormalized: { name: 'Org_denormalized', id: 'syn68259166' },
+  // UseCase: { name: 'UseCase', id: 'syn63096837' },
 }
 
 export const DST_TABLE_COLUMN_NAMES = {
