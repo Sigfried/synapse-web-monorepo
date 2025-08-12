@@ -12,6 +12,10 @@ interface Node {
   parentId?: string
   level?: number
   y?: number
+  allParentIds?: string[] // Track all parents for polyhierarchy
+  isFirstOccurrence?: boolean // True only for the first appearance
+  hasChildren?: boolean // Whether this node has children
+  pathId?: string // Unique identifier for this node in this specific path
 }
 
 interface Connection {
@@ -67,6 +71,9 @@ const ColumnarVisualization: React.FC<ColumnarVisualizationProps> = ({
     substrates: 1,
     datasets: 1,
   })
+  // State for expand/collapse functionality
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set())
+  const [showPolyhierarchy, setShowPolyhierarchy] = useState(true)
 
   // Query bundle requests for each entity type
   const queryRequests = useMemo(() => {
@@ -192,40 +199,306 @@ const ColumnarVisualization: React.FC<ColumnarVisualizationProps> = ({
   // Process raw data into nodes
   const processNodes = useCallback(
     (rows: Row[], type: Node['type']): Node[] => {
-      return rows.map(row => ({
-        id: row.values[0] as string,
-        name: row.values[1] as string,
-        type,
-        parentId:
-          type !== 'standard' && type !== 'dataset'
-            ? (row.values[2] as string)
-            : undefined,
-      }))
+      const nodes = rows.map(row => {
+        // Parse all parent IDs if it's a JSON array
+        let parentId: string | undefined = undefined
+        let allParentIds: string[] = []
+
+        if (type !== 'standard' && type !== 'dataset' && row.values[2]) {
+          const parentValue = row.values[2]
+          if (parentValue && parentValue !== '' && parentValue !== 'null') {
+            try {
+              // Try to parse as JSON array
+              const parsed = JSON.parse(parentValue) as string[]
+              if (parsed && Array.isArray(parsed) && parsed.length > 0) {
+                allParentIds = parsed
+                parentId = parsed[0] // Use first parent as primary
+              }
+            } catch {
+              // If not JSON, use as-is (but only if it looks like an ID)
+              if (parentValue.includes('B2AI_') || parentValue.includes(':')) {
+                parentId = parentValue
+                allParentIds = [parentValue]
+              }
+            }
+          }
+        }
+
+        return {
+          id: row.values[0] as string,
+          name: row.values[1] as string,
+          type,
+          parentId,
+          allParentIds,
+        }
+      })
+
+      // Enhanced debug logging
+      if (type === 'topic') {
+        console.log(`Processing ${nodes.length} ${type} nodes`)
+        const withParents = nodes.filter(n => n.parentId)
+        console.log(
+          `${type}: ${withParents.length}/${nodes.length} nodes have parents`,
+        )
+        if (withParents.length > 0) {
+          console.log(
+            `Sample parent relationships:`,
+            withParents.slice(0, 5).map(n => ({
+              name: n.name,
+              id: n.id,
+              parent: n.parentId,
+              allParents: n.allParentIds,
+            })),
+          )
+        }
+        // Find Voice Disorders specifically
+        const voiceDisorders = nodes.find(n => n.name === 'Voice Disorders')
+        if (voiceDisorders) {
+          console.log('Voice Disorders node:', voiceDisorders)
+        }
+        // Check for nodes with multiple parents
+        const multiParentNodes = nodes.filter(
+          n => n.allParentIds && n.allParentIds.length > 1,
+        )
+        console.log(
+          `Found ${multiParentNodes.length} nodes with multiple parents:`,
+          multiParentNodes.map(n => ({
+            name: n.name,
+            parents: n.allParentIds,
+          })),
+        )
+      }
+
+      return nodes
     },
     [],
   )
 
-  // Build hierarchical structure for tree-like entities
-  const buildHierarchy = useCallback((nodes: Node[]): Node[] => {
-    const nodeMap = new Map<string, Node>()
+  // Build hierarchical structure for tree-like entities with polyhierarchy support
+  const buildHierarchy = useCallback(
+    (nodes: Node[]): Node[] => {
+      const originalNodeMap = new Map<string, Node>()
+      const childrenMap = new Map<string, string[]>()
+      const nodeOccurrences = new Map<string, number>()
 
-    // First pass: create map
-    nodes.forEach(node => {
-      nodeMap.set(node.id, { ...node, level: 0 })
-    })
+      // First pass: build maps and count occurrences
+      nodes.forEach(node => {
+        originalNodeMap.set(node.id, node)
 
-    // Second pass: build hierarchy levels
-    nodes.forEach(node => {
-      const mappedNode = nodeMap.get(node.id)!
-      if (node.parentId && nodeMap.has(node.parentId)) {
-        const parent = nodeMap.get(node.parentId)!
-        mappedNode.level = (parent.level || 0) + 1
+        // Track all parent-child relationships for polyhierarchy
+        if (node.allParentIds && node.allParentIds.length > 0) {
+          node.allParentIds.forEach(parentId => {
+            if (!childrenMap.has(parentId)) {
+              childrenMap.set(parentId, [])
+            }
+            if (!childrenMap.get(parentId)!.includes(node.id)) {
+              childrenMap.get(parentId)!.push(node.id)
+            }
+          })
+        }
+
+        // Count how many parent relationships each node has
+        nodeOccurrences.set(
+          node.id,
+          (node.allParentIds?.length || 0) +
+            (node.allParentIds?.length === 0 ? 1 : 0),
+        )
+      })
+
+      // Create polyhierarchy nodes - one for each parent-child relationship
+      const polyhierarchyNodes: Node[] = []
+      const processedPaths = new Set<string>()
+      let pathCounter = 0
+
+      // Recursive function to create nodes for all paths
+      const createPolyhierarchyNodes = (
+        nodeId: string,
+        parentPath: string[],
+        level: number,
+        isFirstOccurrence: boolean,
+      ) => {
+        const originalNode = originalNodeMap.get(nodeId)
+        if (!originalNode) return
+
+        const pathId = `${nodeId}:${parentPath.join('->')}`
+        if (processedPaths.has(pathId)) return
+        processedPaths.add(pathId)
+
+        // Determine if this node has children
+        const hasChildren =
+          childrenMap.has(nodeId) && childrenMap.get(nodeId)!.length > 0
+
+        // Create a node instance for this specific path
+        const pathNode: Node = {
+          ...originalNode,
+          level,
+          pathId: `path-${++pathCounter}`,
+          isFirstOccurrence,
+          hasChildren,
+        }
+
+        polyhierarchyNodes.push(pathNode)
+
+        // Debug logging for specific nodes
+        if (originalNode.name === 'Voice Disorders') {
+          console.log(`Creating Voice Disorders path:`, {
+            pathId: pathNode.pathId,
+            parentPath: parentPath,
+            level,
+            isFirstOccurrence,
+            hasChildren,
+          })
+        }
+
+        // Recursively process children if this is the first occurrence or polyhierarchy is enabled
+        if ((isFirstOccurrence || showPolyhierarchy) && hasChildren) {
+          const children = childrenMap.get(nodeId) || []
+          children.sort((a, b) => {
+            const nodeA = originalNodeMap.get(a)
+            const nodeB = originalNodeMap.get(b)
+            return (nodeA?.name || '').localeCompare(nodeB?.name || '')
+          })
+
+          children.forEach(childId => {
+            const childOccurrences = nodeOccurrences.get(childId) || 0
+            createPolyhierarchyNodes(
+              childId,
+              [...parentPath, nodeId],
+              level + 1,
+              childOccurrences > 1 ? false : true,
+            )
+          })
+        }
       }
-    })
 
-    // Return the processed nodes from the map
-    return Array.from(nodeMap.values())
-  }, [])
+      // Start by processing all possible parent-child paths
+      const processedNodeInstances = new Set<string>()
+
+      // Helper function to process a node and all its descendants from a specific parent path
+      const processFromParent = (
+        nodeId: string,
+        parentId: string | null,
+        parentPath: string[],
+        level: number,
+      ) => {
+        const originalNode = originalNodeMap.get(nodeId)
+        if (!originalNode) return
+
+        const instanceKey = `${nodeId}-from-${parentId || 'root'}`
+        if (processedNodeInstances.has(instanceKey)) return
+        processedNodeInstances.add(instanceKey)
+
+        // Determine if this is the first occurrence of this node
+        const allInstancesOfNode = Array.from(processedNodeInstances).filter(
+          key => key.startsWith(`${nodeId}-`),
+        )
+        const isFirstOccurrence = allInstancesOfNode.length === 1
+
+        const pathNode: Node = {
+          ...originalNode,
+          level,
+          pathId: `path-${++pathCounter}`,
+          isFirstOccurrence,
+          hasChildren:
+            childrenMap.has(nodeId) && childrenMap.get(nodeId)!.length > 0,
+        }
+
+        polyhierarchyNodes.push(pathNode)
+
+        // Debug logging for specific nodes
+        if (originalNode.name === 'Voice Disorders') {
+          console.log(
+            `Creating Voice Disorders instance from parent ${parentId}:`,
+            {
+              pathId: pathNode.pathId,
+              parentPath: parentPath,
+              level,
+              isFirstOccurrence,
+              instanceKey,
+            },
+          )
+        }
+
+        // Recursively process children
+        if (childrenMap.has(nodeId)) {
+          const children = childrenMap.get(nodeId)!
+          children.forEach(childId => {
+            processFromParent(
+              childId,
+              nodeId,
+              [...parentPath, nodeId],
+              level + 1,
+            )
+          })
+        }
+      }
+
+      // First, find all root nodes (nodes with no parents or parents not in dataset)
+      const rootNodes = nodes.filter(
+        node =>
+          !node.allParentIds ||
+          node.allParentIds.length === 0 ||
+          !node.allParentIds.some(parentId => originalNodeMap.has(parentId)),
+      )
+
+      // Process from each root
+      rootNodes.forEach(rootNode => {
+        processFromParent(rootNode.id, null, [], 0)
+      })
+
+      // Now process nodes that have multiple parents - create additional instances
+      if (showPolyhierarchy) {
+        nodes.forEach(node => {
+          if (node.allParentIds && node.allParentIds.length > 1) {
+            // For each additional parent beyond the first, create another instance
+            node.allParentIds.slice(1).forEach(additionalParentId => {
+              if (originalNodeMap.has(additionalParentId)) {
+                // Find the level of this parent in the existing hierarchy
+                const parentNode = polyhierarchyNodes.find(
+                  n => n.id === additionalParentId,
+                )
+                if (parentNode) {
+                  processFromParent(
+                    node.id,
+                    additionalParentId,
+                    [],
+                    (parentNode.level || 0) + 1,
+                  )
+                }
+              }
+            })
+          }
+        })
+      }
+
+      // Log debug info
+      if (polyhierarchyNodes.some(n => n.type === 'topic')) {
+        const multiParentNodes = polyhierarchyNodes.filter(
+          n => !n.isFirstOccurrence,
+        )
+        console.log(
+          `Polyhierarchy: ${multiParentNodes.length} additional occurrences created`,
+        )
+
+        const voiceNodes = polyhierarchyNodes.filter(
+          n => n.name === 'Voice Disorders',
+        )
+        if (voiceNodes.length > 1) {
+          console.log(
+            `Voice Disorders appears ${voiceNodes.length} times:`,
+            voiceNodes.map(n => ({
+              level: n.level,
+              isFirst: n.isFirstOccurrence,
+              pathId: n.pathId,
+            })),
+          )
+        }
+      }
+
+      return polyhierarchyNodes
+    },
+    [showPolyhierarchy],
+  )
 
   // Extract connections from standards data
   const extractConnections = useCallback((): Connection[] => {
@@ -379,6 +652,64 @@ const ColumnarVisualization: React.FC<ColumnarVisualizationProps> = ({
     [topicsData, standardsData, orgsData, substratesData, datasetsData],
   )
 
+  // Filter nodes based on expand/collapse state
+  const getVisibleNodes = useCallback(
+    (nodes: Node[]): Node[] => {
+      const visibleNodes: Node[] = []
+      const collapsedAncestorLevels = new Set<number>()
+
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i]
+        const currentLevel = node.level || 0
+
+        // Clear collapsed ancestor levels that don't apply to current node
+        Array.from(collapsedAncestorLevels).forEach(level => {
+          if (level >= currentLevel) {
+            collapsedAncestorLevels.delete(level)
+          }
+        })
+
+        // Check if this node is under a collapsed ancestor
+        const isHidden = Array.from(collapsedAncestorLevels).some(
+          level => level < currentLevel,
+        )
+
+        if (!isHidden) {
+          visibleNodes.push(node)
+
+          // If this node is collapsed and has children, mark this level as collapsed
+          if (
+            node.hasChildren &&
+            node.pathId &&
+            !expandedNodes.has(node.pathId) &&
+            !node.isFirstOccurrence
+          ) {
+            collapsedAncestorLevels.add(currentLevel)
+          }
+        }
+
+        // Debug logging
+        if (
+          node.name === 'Voice Disorders' ||
+          (node.name.includes('Disorders') && node.level && node.level > 0)
+        ) {
+          console.log(
+            `Node ${node.name} (${
+              node.pathId
+            }): level=${currentLevel}, isHidden=${isHidden}, isFirstOcc=${
+              node.isFirstOccurrence
+            }, hasChildren=${node.hasChildren}, expanded=${
+              node.pathId ? expandedNodes.has(node.pathId) : 'N/A'
+            }`,
+          )
+        }
+      }
+
+      return visibleNodes
+    },
+    [expandedNodes],
+  )
+
   // Prepare column data with pagination
   const columns: ColumnData[] = useMemo(() => {
     const topicNodes = buildHierarchy(processNodes(allRows.topics, 'topic'))
@@ -391,10 +722,11 @@ const ColumnarVisualization: React.FC<ColumnarVisualizationProps> = ({
     )
     const datasetNodes = processNodes(allRows.datasets, 'dataset')
 
-    // Apply pagination
+    // Apply visibility filtering and pagination
     const getPagedNodes = (nodes: Node[], entityType: string) => {
+      const visibleNodes = getVisibleNodes(nodes)
       const startIdx = (currentPages[entityType] - 1) * nodesPerPage
-      return nodes.slice(startIdx, startIdx + nodesPerPage)
+      return visibleNodes.slice(startIdx, startIdx + nodesPerPage)
     }
 
     return [
@@ -534,6 +866,20 @@ const ColumnarVisualization: React.FC<ColumnarVisualizationProps> = ({
     navigate(`${pathMap[node.type]}?id=${node.id}`)
   }
 
+  // Handle expand/collapse
+  const handleExpandToggle = (pathId: string, e: React.MouseEvent) => {
+    e.stopPropagation() // Prevent node selection
+    setExpandedNodes(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(pathId)) {
+        newSet.delete(pathId)
+      } else {
+        newSet.add(pathId)
+      }
+      return newSet
+    })
+  }
+
   // Redraw connections when data or selections change
   useEffect(() => {
     drawConnections()
@@ -595,6 +941,17 @@ const ColumnarVisualization: React.FC<ColumnarVisualizationProps> = ({
             max="200"
             step="10"
           />
+        </div>
+
+        <div className="control-group">
+          <label>
+            <input
+              type="checkbox"
+              checked={showPolyhierarchy}
+              onChange={e => setShowPolyhierarchy(e.target.checked)}
+            />
+            Show Polyhierarchy (Multiple Parent Paths)
+          </label>
         </div>
       </div>
 
@@ -703,11 +1060,12 @@ const ColumnarVisualization: React.FC<ColumnarVisualizationProps> = ({
             <div>
               {column.nodes.map(node => (
                 <div
-                  key={node.id}
+                  key={node.pathId || `${node.id}-${colIndex}`}
                   data-node-id={node.id}
+                  data-path-id={node.pathId}
                   className={`node ${node.type}-node ${
                     selectedNode === node.id ? 'selected' : ''
-                  }`}
+                  } ${!node.isFirstOccurrence ? 'repeated-occurrence' : ''}`}
                   style={{
                     marginLeft: node.level ? `${node.level * 20}px` : '0',
                   }}
@@ -716,7 +1074,54 @@ const ColumnarVisualization: React.FC<ColumnarVisualizationProps> = ({
                   onClick={() => handleNodeClick(node)}
                   onDoubleClick={() => handleNodeDoubleClick(node)}
                 >
-                  {node.name}
+                  <div className="node-content">
+                    {/* Expand/collapse button for nodes with children */}
+                    {node.hasChildren &&
+                      !node.isFirstOccurrence &&
+                      node.pathId && (
+                        <button
+                          className="expand-button"
+                          onClick={e => handleExpandToggle(node.pathId!, e)}
+                          title={
+                            expandedNodes.has(node.pathId)
+                              ? 'Collapse'
+                              : 'Expand'
+                          }
+                        >
+                          {expandedNodes.has(node.pathId) ? '−' : '+'}
+                        </button>
+                      )}
+
+                    {/* Indentation and node name */}
+                    <span className="node-text">
+                      {node.level && node.level > 0
+                        ? `${'  '.repeat(node.level)}↳ `
+                        : ''}
+                      {node.name}
+                      {/* Indicator for multiple occurrences */}
+                      {!node.isFirstOccurrence && (
+                        <span
+                          className="occurrence-indicator"
+                          title="This node appears elsewhere in the hierarchy"
+                        >
+                          ↩
+                        </span>
+                      )}
+                      {/* Debug info */}
+                      {node.name === 'Voice Disorders' && (
+                        <span
+                          style={{
+                            fontSize: '0.6rem',
+                            color: '#999',
+                            marginLeft: '0.5rem',
+                          }}
+                        >
+                          [{node.isFirstOccurrence ? 'FIRST' : 'REPEAT'}:
+                          {node.pathId}]
+                        </span>
+                      )}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
