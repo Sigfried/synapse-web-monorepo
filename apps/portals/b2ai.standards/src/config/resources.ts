@@ -128,7 +128,63 @@ export const standardsDetailsPageSQL = `
             registration
     FROM ${TABLE_IDS.DST_denormalized.id}
 `
+export const TOPIC_TABLE_COLUMN_NAMES = {
+  ID: 'id',
+  NAME: 'name',
+  CATEGORY: 'category',
+  DESCRIPTION: 'description',
+  SUBCLASS_OF: 'subclass_of',
+  EDAM_ID: 'edam_id',
+  MESH_ID: 'mesh_id',
+  NCIT_ID: 'ncit_id',
+  RELATED_TO: 'related_to',
+}
+
+// Helper function to create topic links for parent/related topics
+export const createTopicLinksSQL = (idColumn: string, nameColumn: string) => `
+    CASE 
+        WHEN ${idColumn} IS NOT NULL AND ${idColumn} != '' 
+        THEN concat('[', ${nameColumn}, '](/Explore/DataTopic/DetailsPage?id=', ${idColumn}, ')')
+        ELSE NULL
+    END
+`
+
+export const topicSQL = `
+    SELECT
+          concat('[', name, '](/Explore/DataTopic/DetailsPage?id=', id, ')') as name
+        , description
+        , (SELECT name FROM ${TABLE_IDS.DataTopic.id} parent WHERE parent.id = main.subclass_of LIMIT 1) as parentTopicName
+        , subclass_of as parentTopicId
+        , CASE 
+            WHEN subclass_of IS NOT NULL AND subclass_of != '' 
+            THEN concat('[', (SELECT name FROM ${TABLE_IDS.DataTopic.id} parent WHERE parent.id = main.subclass_of LIMIT 1), '](/Explore/DataTopic/DetailsPage?id=', subclass_of, ')')
+            ELSE NULL
+          END as parentTopic
+        , edam_id
+        , mesh_id
+        , ncit_id
+        , related_to
+    FROM ${TABLE_IDS.DataTopic.id} main
+`
+
+export const topicDetailsPageSQL = `
+    SELECT  id,
+            name as topicName,
+            description,
+            subclass_of,
+            edam_id,
+            mesh_id,
+            ncit_id,
+            related_to
+    FROM ${TABLE_IDS.DataTopic.id}
+`
+
 export const standardsFtsConfig: FTSConfig = {
+  textMatchesMode: 'BOOLEAN',
+  distance: 50,
+}
+
+export const topicsFtsConfig: FTSConfig = {
   textMatchesMode: 'BOOLEAN',
   distance: 50,
 }

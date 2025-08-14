@@ -1,5 +1,7 @@
 import StandardsDetailsPage from '@/pages/StandardsDetailsPage'
 import OrganizationDetailsPage from '@/pages/OrganizationDetailsPage'
+import TopicExplorePage from '@/pages/TopicExplorePage'
+import TopicDetailsPage from '@/pages/TopicDetailsPage'
 import { Box } from '@mui/material'
 import App from '@sage-bionetworks/synapse-portal-framework/App'
 import { SectionLayout } from '@sage-bionetworks/synapse-portal-framework/components/SectionLayout'
@@ -66,6 +68,15 @@ const routes: RouteObject[] = [
       {
         path: 'Explore/Organization/OrganizationDetailsPage',
         element: <OrganizationDetailsPage />,
+      },
+      {
+        path: 'Explore/DataTopic',
+        element: <TopicExplorePage />,
+        // Claude decided to make this it's own page component instead of like path: Explore above
+      },
+      {
+        path: 'Explore/DataTopic/DetailsPage',
+        element: <TopicDetailsPage />,
       },
       {
         path: 'About',
