@@ -1,0 +1,43 @@
+import{j as r}from"./jsx-runtime-D_zvdyIk.js";import{r as w}from"./index-Dcva6Igs.js";import{F as g}from"./FullWidthAlert-Df8-vKnd.js";import{S as v}from"./SynapseNavDrawer-BQJYezHL.js";import"./iframe-CCoJg556.js";import"./spreadSx-CwcO6WA9.js";import"./Alert-cS9oZwPN.js";import"./createTheme-B26sKtvN.js";import"./DefaultPropsProvider-YJnmDfI4.js";import"./useSlot-Rmgo1ffi.js";import"./useForkRef-DBtevC74.js";import"./createSimplePaletteValueFilter-DNddmZR9.js";import"./createSvgIcon-BEKnxyJh.js";import"./Close-B4nVTahf.js";import"./IconButton-Cl4RV6RG.js";import"./useTimeout-C8GfIPaa.js";import"./ButtonBase-u3iQxWhW.js";import"./isFocusVisible-B8k4qzLc.js";import"./CircularProgress-BN2C8Rmz.js";import"./Paper-CNxH606E.js";import"./useTheme-chxq-tHR.js";import"./useTheme-CCL95tAL.js";import"./Stack-CTl5yyJr.js";import"./extendSxProp-BVfK8pxE.js";import"./getThemeProps-C0vT6Df8.js";import"./Box-CkbFs_a4.js";import"./AlertTitle-CaC_WgAh.js";import"./Typography-CwvWcdql.js";import"./index-hLcTFsES.js";import"./ClickAwayListener-C7dbeoYX.js";import"./getReactElementRef-7JBTpt97.js";import"./index-CJdyCa67.js";import"./index-DBA9oQSP.js";import"./ownerDocument-DW-IO8s5.js";import"./Grow-ADuAH2zU.js";import"./Tooltip-C31LWaVV.js";import"./index-37XzZJ7t.js";import"./useControlled-BLD8yqHo.js";import"./Popper-B9lMpEBY.js";import"./Button-DMnAdGab.js";import"./useFiles-BVV8mgFx.js";import"./VerificationSubmission-CNoSrCdk.js";import"./SynapseConstants-Bjk2AzpK.js";import"./OrientationBanner-BtSSrosl.js";import"./index-CdNBkwvZ.js";import"./react-DC570P_z.js";import"./fetchWithExponentialTimeout-CXmnpl-T.js";import"./StringUtils-BmiE0y30.js";import"./useQuery-DLOdcNUn.js";import"./QueryClientProvider-CF8RF_Ej.js";import"./Link-DFT_SKuP.js";import"./Collapse-BP6-ZFOW.js";import"./_baseUniq-JQAenPva.js";import"./_Uint8Array-BfAIAttP.js";import"./isArray-lBX6a_CU.js";import"./_getTag-CCOx2CzZ.js";import"./isEqual-BORxkXdf.js";import"./merge-zeIWO4FX.js";import"./_initCloneObject-Dv1PRlE8.js";import"./identity-DKeuBCMA.js";import"./tinycolor-Begke6kS.js";import"./Fade-DSwTLMOF.js";import"./inputBaseClasses-BJfanctR.js";import"./calculateFriendlyFileSize-Bx2GrSlG.js";import"./CheckCircleTwoTone-DHO8WRy1.js";import"./InfoTwoTone-CXFwwHlq.js";import"./useMutation-Bexl4Vhr.js";import"./dayjs.min-4GXyklly.js";import"./chunk-AYJ5UCUI-B7sysu72.js";import"./cloneDeep-CQMH2xKb.js";import"./Skeleton-DPcDmHUt.js";import"./useDataAccessSubmission-DMTdGIXi.js";import"./useInfiniteQuery-BqPKKn2w.js";import"./useDownloadList-CsuhLtc1.js";import"./CreateProjectModal-dAAT0MJ-.js";import"./ConfirmationDialog-DFcOUsP9.js";import"./DialogBase-DhR_BGfR.js";import"./Close-Dw2Ik-rc.js";import"./HelpPopover-Cg2ABrxt.js";import"./MarkdownPopover-DojsttU6.js";import"./LightTooltip-DKz0KY5l.js";import"./MarkdownSynapse-C9EbAddh.js";import"./SkeletonButton-Cl3vLGWX.js";import"./SkeletonInlineBlock-adFhimf1.js";import"./SkeletonTable-BzqVahFP.js";import"./times-Conr0Av0.js";import"./toInteger-7hiB9XYC.js";import"./isSymbol-DlK7yVTc.js";import"./SkeletonParagraph-C-rmnhGg.js";import"./HelpOutlineTwoTone-BNYL4yqC.js";import"./DialogTitle-Z4b0u9S9.js";import"./DialogContent-D8X-6_NV.js";import"./Dialog-Bwwo_vVP.js";import"./Modal-CuYE1DNr.js";import"./getScrollbarSize-CaCM53D3.js";import"./ownerWindow-HkKU3E4x.js";import"./createChainedFunction-BO_9K8Jh.js";import"./Backdrop-BE-0oAxe.js";import"./TextField-mC3w4S7d.js";import"./StyledFormControl-D4TnH6bP.js";import"./FormControl-BDpHO3bO.js";import"./useFormControl-3qr0-1J5.js";import"./isMuiElement-DDAVkmEV.js";import"./InputLabel-B3Hfzi75.js";import"./formControlState-Dq1zat_P.js";import"./FormLabel-CqeWIZnq.js";import"./InputBase-BjRgjqBT.js";import"./isHostComponent-DVu5iVWx.js";import"./debounce-Be36O1Ab.js";import"./IconSvg-CjSX6ggy.js";import"./LayersTwoTone-DnwDYN_U.js";import"./ContentCopyTwoTone-CcO5AUPc.js";import"./ErrorOutlined-BRuzVwTz.js";import"./GetAppTwoTone-CI2kaP6i.js";import"./InfoOutlined-DIwjafnr.js";import"./PhoneTwoTone-B0YzQJDk.js";import"./DeleteTwoTone-Cs8MA6bx.js";import"./SynapseHomepageNavBar-BBNFnNFk.js";import"./SageResourcesPopover-DfER7V0o.js";import"./Popover-BCV2R013.js";import"./mergeSlotProps-DVraFtfd.js";import"./Grid-DTQjV6mp.js";import"./index-Dt8ED-Iw.js";import"./Divider-Cn_uvkGp.js";import"./dividerClasses-DVjzDS6-.js";import"./Menu-B1oaJoGu.js";import"./MenuList-DphboXXQ.js";import"./List-cNd5ThKj.js";import"./MenuItem-DqxNSI0v.js";import"./UserBadge-CvHhG7Be.js";import"./ToastMessage-CaJZuReL.js";import"./uniqueId-IA1F3X2F.js";import"./toString-C6Z8xCH9.js";import"./CSSTransition-CRyk46BB.js";import"./Card-Ck04juDW.js";import"./Avatar-B_Zi1Xp7.js";import"./Chip-DnM-Q600.js";import"./Slide-BCwTfEUq.js";import"./TextField--O8Ttmzy.js";import"./Select-DBEk98gO.js";import"./Input-DeePHwMn.js";import"./FormHelperText-SxMjJg4p.js";import"./InputAdornment-1zLXww9m.js";import"./listItemButtonClasses-BcEEy-Wt.js";import"./Badge-DtI2_wZl.js";import"./usePreviousProps-CRkGiPv2.js";const oo={title:"UI/FullWidthAlert",argTypes:{variant:{options:["warning","info","danger","success",void 0],control:{type:"radio"}}},component:g,parameters:{chromatic:{viewports:[300,600,1200]}}},o={args:{variant:"success",show:!0,title:"Package has been downloaded",description:"The files contained in this zip file have been removed from your list.",isGlobal:!1}},t={args:{variant:"success",show:!0,title:"Success",description:"Lorem ipsum dolor sit amet",primaryButtonConfig:{text:"Accept and Continue",onClick:()=>alert("Accepted")},isGlobal:!0,onClose:void 0}},i={args:{...t.args},render:p=>r.jsxs(r.Fragment,{children:[r.jsx(v,{initIsOpen:!1,gotoPlace:h=>{window.alert(`Nav bar calling back to change route to ${h}`)}}),r.jsx(g,{...p})]}),decorators:[p=>(w.useEffect(()=>(document.body.classList.add("SynapseNavDrawerIsShowing"),()=>{document.body.classList.remove("SynapseNavDrawerIsShowing")}),[]),r.jsx(p,{}))]};var e,m,s;o.parameters={...o.parameters,docs:{...(e=o.parameters)==null?void 0:e.docs,source:{originalSource:`{
+  args: {
+    variant: 'success',
+    show: true,
+    title: 'Package has been downloaded',
+    description: 'The files contained in this zip file have been removed from your list.',
+    isGlobal: false
+  }
+}`,...(s=(m=o.parameters)==null?void 0:m.docs)==null?void 0:s.source}}};var a,n,c;t.parameters={...t.parameters,docs:{...(a=t.parameters)==null?void 0:a.docs,source:{originalSource:`{
+  args: {
+    variant: 'success',
+    show: true,
+    title: 'Success',
+    description: 'Lorem ipsum dolor sit amet',
+    primaryButtonConfig: {
+      text: 'Accept and Continue',
+      onClick: () => alert('Accepted')
+    },
+    isGlobal: true,
+    onClose: undefined
+  }
+}`,...(c=(n=t.parameters)==null?void 0:n.docs)==null?void 0:c.source}}};var l,d,u;i.parameters={...i.parameters,docs:{...(l=i.parameters)==null?void 0:l.docs,source:{originalSource:`{
+  args: {
+    ...SuccessAlertWithPrimaryButtonOnly.args
+  },
+  render: args => <>
+      <SynapseNavDrawer initIsOpen={false} gotoPlace={(href: string) => {
+      window.alert(\`Nav bar calling back to change route to \${href}\`);
+    }} />
+      <FullWidthAlert {...args} />
+    </>,
+  decorators: [Story => {
+    useEffect(() => {
+      // SWC applies this class when SynapseNavDrawer is visible
+      document.body.classList.add('SynapseNavDrawerIsShowing');
+      return () => {
+        // ...and removes it when SynapseNavDrawer is not visible
+        document.body.classList.remove('SynapseNavDrawerIsShowing');
+      };
+    }, []);
+    return <Story />;
+  }]
+}`,...(u=(d=i.parameters)==null?void 0:d.docs)==null?void 0:u.source}}};const io=["DownloadListPackageCreation","SuccessAlertWithPrimaryButtonOnly","SynapseNavDrawerIsShowing"];export{o as DownloadListPackageCreation,t as SuccessAlertWithPrimaryButtonOnly,i as SynapseNavDrawerIsShowing,io as __namedExportsOrder,oo as default};
