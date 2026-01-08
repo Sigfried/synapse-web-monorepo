@@ -1,8 +1,0 @@
-import{S as m}from"./SynapseNavDrawer-XbzQJot8.js";import"./iframe-_2a-Zh8t.js";import"./index-r8ZA1smB.js";import"./useDataAccessSubmission-CPX0pPB_.js";import"./useInfiniteQuery-Hrac19fz.js";import"./useDownloadList-vBxl9agf.js";import"./waitForAsyncResult-xY6IO9Rn.js";import"./CreateProjectModal-athsuoDy.js";import"./ConfirmationDialog-CLDq5d_x.js";import"./DialogBase-ClBOqAWs.js";import"./Close-C2BukL8w.js";import"./HelpPopover-BslItOrf.js";import"./MarkdownPopover-Dz7eO8nM.js";import"./LightTooltip-DzG0U7Fd.js";import"./MarkdownSynapse-XSlnJ2Zh.js";import"./SkeletonButton-BdbU0qeJ.js";import"./SkeletonInlineBlock-D4phUKkT.js";import"./SkeletonTable-Dy26KbMd.js";import"./SkeletonParagraph-G7AItygV.js";import"./SynapseHomepageNavBar-DtnnI4Se.js";import"./SageResourcesPopover-3qwkSyUd.js";import"./Grid-VxB8OGP-.js";import"./index-DzUoWXCg.js";import"./MenuItem-BPLSFPlZ.js";import"./UserBadge-BMD8CbJl.js";import"./Card-42CNHwe_.js";import"./Chip-BGc6MLxw.js";import"./Slide-CaPh1FHt.js";import"./InputAdornment-CX7BKQvL.js";import"./listItemButtonClasses-DQcEyzdZ.js";import"./Badge-BqPIJ1wV.js";import"./usePreviousProps-G2eJRODR.js";const F={title:"Synapse/SynapseNavDrawer",component:m},r={args:{initIsOpen:!1,gotoPlace:p=>{window.alert(`Nav bar calling back to change route to ${p}`)}}};var o,t,i;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`{
-  args: {
-    initIsOpen: false,
-    gotoPlace: (href: string) => {
-      window.alert(\`Nav bar calling back to change route to \${href}\`);
-    }
-  }
-}`,...(i=(t=r.parameters)==null?void 0:t.docs)==null?void 0:i.source}}};const G=["Demo"];export{r as Demo,G as __namedExportsOrder,F as default};
